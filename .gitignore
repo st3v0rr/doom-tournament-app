@@ -6,3 +6,4 @@ data/
 .env
 *.db
 *.iml
+.DS_Store
