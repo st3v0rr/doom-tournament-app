@@ -1,0 +1,87 @@
+.lb-mobile {
+  min-height: 100vh;
+  background: var(--color-background);
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-back-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.lb-back-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.lb-header-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.lb-mobile-content {
+  padding: var(--spacing-lg);
+}
+
+.lb-mobile-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.lb-mobile-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+/* Scale down TV sizes for mobile */
+.lb-mobile .display-lb-row {
+  font-size: 1rem;
+  padding: 10px 14px;
+  gap: 12px;
+  border-left: none;
+}
+
+.lb-mobile .display-lb-rank {
+  font-size: 1rem;
+  min-width: 36px;
+}
+
+.lb-mobile .display-lb-time {
+  font-size: 1rem;
+}
+
+.lb-mobile .bracket-col {
+  padding: 12px 14px;
+}
+
+.lb-mobile .bracket-col-title {
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+}
+
+.lb-mobile .bracket-col--final .bracket-col-title {
+  font-size: 0.95rem;
+}
+
+.lb-mobile .bracket-entry {
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  gap: 8px;
+}
+
+.lb-mobile .bracket-entry-pos {
+  min-width: 18px;
+}

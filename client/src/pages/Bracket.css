@@ -1,0 +1,57 @@
+.bracket-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.bracket-round h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.bracket-groups {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.bracket-group {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  min-width: 200px;
+  flex: 1;
+}
+
+.bracket-group h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bracket-entry {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin-bottom: 4px;
+  background: var(--color-surface-alt);
+  font-weight: 500;
+}
+
+.bracket-winner {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.bracket-pos {
+  font-size: 1.1rem;
+  min-width: 28px;
+}
+
+.bracket-crown {
+  margin-left: auto;
+  font-size: 1.2rem;
+}
