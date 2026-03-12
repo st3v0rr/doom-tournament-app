@@ -32,31 +32,35 @@ router.get('/', requireAuth, (req, res) => {
     )
     .all(participantId);
 
-  // Compute best K/D from completed slots
-  let bestKd = null;
+  // Compute total K/D from completed slots
+  let totalKills = 0;
+  let totalDeaths = 0;
+  let hasCompleted = false;
   for (const s of slots) {
     if (s.status === 'completed' && s.kills !== null) {
-      const kd = s.kd_ratio;
-      if (bestKd === null || kd > bestKd) bestKd = kd;
+      totalKills += s.kills;
+      totalDeaths += s.deaths ?? 0;
+      hasCompleted = true;
     }
   }
+  const totalKd = hasCompleted ? totalKills / Math.max(1, totalDeaths) : null;
 
   // Compute leaderboard rank
   let rank = null;
-  if (bestKd !== null) {
+  if (totalKd !== null) {
     const higherKd = db
       .prepare(
         `SELECT COUNT(*) AS cnt FROM (
            SELECT sp.participant_id,
-                  MAX(CAST(sp.kills AS REAL) / MAX(1, COALESCE(sp.deaths, 0))) AS best_kd
+                  CAST(SUM(sp.kills) AS REAL) / MAX(1, SUM(COALESCE(sp.deaths, 0))) AS kd_ratio
            FROM slot_participants sp
            JOIN slots s ON sp.slot_id = s.id
            WHERE s.status = 'completed' AND sp.kills IS NOT NULL
            GROUP BY sp.participant_id
          ) ranked
-         WHERE best_kd > ?`
+         WHERE kd_ratio > ?`
       )
-      .get(bestKd);
+      .get(totalKd);
     rank = (higherKd?.cnt ?? 0) + 1;
   }
 

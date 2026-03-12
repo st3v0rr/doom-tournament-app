@@ -298,10 +298,10 @@ router.get('/participants', (req, res) => {
     .prepare(
       `SELECT p.id, p.nick_name, p.ticket_number,
               (SELECT COUNT(DISTINCT slot_id) FROM slot_participants WHERE participant_id = p.id) AS slot_count,
-              (SELECT MAX(CAST(sp2.kills AS REAL) / MAX(1, COALESCE(sp2.deaths, 0)))
+              (SELECT CAST(SUM(sp2.kills) AS REAL) / MAX(1, SUM(COALESCE(sp2.deaths, 0)))
                FROM slot_participants sp2
                JOIN slots s2 ON sp2.slot_id = s2.id
-               WHERE sp2.participant_id = p.id AND s2.status = 'completed' AND sp2.kills IS NOT NULL) AS best_kd
+               WHERE sp2.participant_id = p.id AND s2.status = 'completed' AND sp2.kills IS NOT NULL) AS kd_ratio
        FROM participants p
        ORDER BY p.nick_name ASC`
     )

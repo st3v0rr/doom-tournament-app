@@ -1047,8 +1047,8 @@ function BracketTab() {
   };
 
   const top4 = [...participants]
-    .filter((p) => p.best_kd != null)
-    .sort((a, b) => b.best_kd - a.best_kd)
+    .filter((p) => p.kd_ratio != null)
+    .sort((a, b) => b.kd_ratio - a.kd_ratio)
     .slice(0, 4);
 
   const finalEntries = entries.filter((e) => e.round === 'final');
@@ -1093,7 +1093,7 @@ function BracketTab() {
                     {playerWins ? '👑 ' : ''}
                     {rank >= 0 ? `#${rank + 1} ` : ''}
                     {p.nick_name}
-                    {p.best_kd != null ? ` – K/D ${p.best_kd.toFixed(2)}` : ''}
+                    {p.kd_ratio != null ? ` – K/D ${p.kd_ratio.toFixed(2)}` : ''}
                   </span>
                   <button className="btn btn-danger btn-sm" onClick={() => removeEntry(p.id)}>
                     ×
@@ -1154,7 +1154,7 @@ function BracketTab() {
                   <option key={p.id} value={p.id}>
                     {rank >= 0 ? `#${rank + 1} ` : ''}
                     {p.nick_name}
-                    {p.best_kd != null ? ` – K/D ${p.best_kd.toFixed(2)}` : ''}
+                    {p.kd_ratio != null ? ` – K/D ${p.kd_ratio.toFixed(2)}` : ''}
                   </option>
                 );
               })}
@@ -1197,7 +1197,7 @@ function ParticipantsTab() {
                 <td style={{ fontFamily: 'monospace' }}>{p.ticket_number}</td>
                 <td>{p.slot_count}</td>
                 <td style={{ fontFamily: 'monospace' }}>
-                  {p.best_kd != null ? Number(p.best_kd).toFixed(2) : '—'}
+                  {p.kd_ratio != null ? Number(p.kd_ratio).toFixed(2) : '—'}
                 </td>
               </tr>
             ))}

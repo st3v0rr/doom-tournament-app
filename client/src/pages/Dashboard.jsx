@@ -182,9 +182,12 @@ export default function Dashboard() {
           {data.rank === 1 && slots.some((s) => s.status === 'completed') && (
             <p style={{ color: 'var(--color-gold)', fontWeight: 700 }}>
               {t('dashboard.bestKd')}:{' '}
-              {Math.max(...slots.filter((s) => s.kd_ratio != null).map((s) => s.kd_ratio)).toFixed(
-                2
-              )}
+              {(() => {
+                const completed = slots.filter((s) => s.status === 'completed' && s.kills != null);
+                const tk = completed.reduce((sum, s) => sum + s.kills, 0);
+                const td = completed.reduce((sum, s) => sum + (s.deaths ?? 0), 0);
+                return (tk / Math.max(1, td)).toFixed(2);
+              })()}
             </p>
           )}
         </div>
