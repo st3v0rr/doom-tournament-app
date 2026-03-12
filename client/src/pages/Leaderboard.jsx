@@ -51,7 +51,7 @@ export default function Leaderboard() {
                 <span className="display-lb-rank">#{i + 1}</span>
                 <span className="display-lb-name">{row.nick_name}</span>
                 <span className="display-lb-time">
-                  {row.best_kd != null ? row.best_kd.toFixed(2) : '—'}
+                  {row.kd_ratio != null ? row.kd_ratio.toFixed(2) : '—'}
                   {row.total_kills != null && (
                     <span
                       style={{

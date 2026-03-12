@@ -95,7 +95,7 @@ function DisplayLeaderboard({ rows }) {
               <span className="display-lb-rank">#{i + 1}</span>
               <span className="display-lb-name">{row.nick_name}</span>
               <span className="display-lb-time">
-                {row.best_kd != null ? Number(row.best_kd).toFixed(2) : '—'}
+                {row.kd_ratio != null ? Number(row.kd_ratio).toFixed(2) : '—'}
                 {row.total_kills != null && (
                   <span style={{ fontSize: '0.7em', opacity: 0.7, marginLeft: 6 }}>
                     ({row.total_kills}/{row.total_deaths ?? 0})
